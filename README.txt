@@ -1,6 +1,9 @@
-# Notes on coding
+# Stock Market Management Program
+- Written in Java using Intellij Community Edition
+- Terminal interface program
+- Implemented Singleton & Factory design pattern
 
-# NOT WORKING
+## NOT WORKING
 - findStock() is not working properly: IndexOutOfBoundsException
 - this error applies to many methods. Many methods use this method to implement
 further functionality (just found 11/17)

@@ -37,7 +37,6 @@ public class StockExchange {
     public Stock addStock(Stock stock) {
         if (stock == null) {
             System.out.println("Stock doesn't exist");
-
         }
 
         this.stockList.add(stock);
@@ -46,10 +45,40 @@ public class StockExchange {
     }
 
     public void printStockList() {
-        for(int i=0; i<stockList.size(); i++) {
-            System.out.println(getName() + ": ");
-            System.out.println(stockList.get(i) + ", ");
+        for(Stock stock : stockList) {
+            System.out.print(stock.getTicker() + ", ");
         }
+    }
+
+    private int findStock(Stock stock) {
+        return this.stockList.indexOf(stock);
+    }
+
+    private int findStock(String name) {
+        for(int i=0; i<this.stockList.size(); i++) {
+            Stock stock = this.stockList.get(i);
+            if(stock.getTicker().equalsIgnoreCase(name)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public String queryStock(Stock stock) {
+        if(findStock(stock) >= 0) {
+            return stock.getCompanyName();
+        }
+        return null;
+    }
+
+    public Stock queryStock(String name) {
+        int position = findStock(name);
+        if(position >= 0) {
+            return this.stockList.get(position);
+        }
+
+        return null;
     }
 
     public void setName() {

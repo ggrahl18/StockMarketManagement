@@ -6,7 +6,7 @@ public class ExchangeFactory {
         if(stockExchange == null) {
             return null;
         } else if(stockExchange == "new") {
-            System.out.println("Initial Public Offering initiated.");
+            System.out.println("***Stock Exchange Factory***");
             return StockExchange.getStockExchange();
         }
         return null;

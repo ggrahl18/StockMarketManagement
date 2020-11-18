@@ -4,9 +4,8 @@
 - Implemented Singleton & Factory design pattern
 
 ## NOT WORKING
-- findStock() is not working properly: IndexOutOfBoundsException
-- this error applies to many methods. Many methods use this method to implement
-further functionality (just found 11/17)
+- printAllStocks() is not working properly. It is only making it part way through the method calls
+(just found 11/18)
 
 ### Concerning Main:
 - When using public static void for methods that return results in the form of System.out.println();
@@ -18,6 +17,5 @@ further functionality (just found 11/17)
 - sort by sharePrice
 - sort by creationDate
 
-### Need to create .gitignore & licensing (MIT)
-- just don't know where it goes... lol
-- README may be in correct spot
+### Need to create licensing (MIT)
+

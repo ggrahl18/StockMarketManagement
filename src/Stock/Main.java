@@ -151,7 +151,6 @@ public class Main {
     }
 
     public static int findExchange(String name) {
-        //        IndexOutOfBoundsException - need to fix
         for(int i=0; i<exchangeList.size(); i++) {
             StockExchange stockExchange = exchangeList.get(i);
             if(stockExchange.getName().equalsIgnoreCase(name)) {

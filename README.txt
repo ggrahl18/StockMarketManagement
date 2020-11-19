@@ -4,8 +4,7 @@
 - Implemented Singleton & Factory design pattern
 
 ## NOT WORKING
-- printAllStocks() is not working properly. It is only making it part way through the method calls
-(just found 11/18)
+
 
 ### Concerning Main:
 - When using public static void for methods that return results in the form of System.out.println();
@@ -16,6 +15,11 @@
 ### Will implement sorting methods
 - sort by sharePrice
 - sort by creationDate
+
+### Will create new Java class Person
+- buyStock() & sellStock()
+- createAccount() & printAccountInformation()
+- addFunds() & withdrawFunds()
 
 ### Need to create licensing (MIT)
 

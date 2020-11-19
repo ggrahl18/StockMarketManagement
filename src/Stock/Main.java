@@ -10,6 +10,12 @@ public class Main {
     public static ArrayList<StockExchange> exchangeList = new ArrayList();
 
     public static void main(String[] args) {
+//       StockExchange exchange = exchangeFactory.getExchange("new");
+//       StockExchange pinkExchange = exchange.createStockExchange("pink");
+//       Stock stock = stockFactory.getStock("new");
+//       stock.setStock("decn", "decn", 0.22, 300000000, "pink", "current");
+//       pinkExchange.addStock(stock);
+//       pinkExchange.printStockList();
 
         int choice = 0;
         boolean quit = false;
@@ -39,7 +45,7 @@ public class Main {
                         switch (nextChoice) {
                             case 0:
                                 goBack = true;
-//                              Took me to the Stock Management Menu
+//                              goBack takes user to the Stock Menu instead of Main Menu
                                 break;
                             case 1:
                                 createStockExchange();
@@ -68,6 +74,7 @@ public class Main {
                         System.out.println("Enter action: ");
                         otherChoice = scanner.nextInt();
                         scanner.nextLine();
+
                         switch (otherChoice) {
                             case 0:
                                 goBackTwo = true;
@@ -127,7 +134,6 @@ public class Main {
         } else if (exchange.getName() == null) {
             exchange.createStockExchange(name);
             exchangeList.add(exchange);
-            System.out.println(name + " exchange was created.");
         }
     }
 
@@ -141,6 +147,7 @@ public class Main {
     public static StockExchange queryExchange(String name) {
         int position = findExchange(name);
         if(position >= 0) {
+            System.out.println("queryExchange(): " + name + " query in in process");
             return exchangeList.get(position);
         }
         return null;
@@ -153,8 +160,8 @@ public class Main {
     public static int findExchange(String name) {
         for(int i=0; i<exchangeList.size(); i++) {
             StockExchange stockExchange = exchangeList.get(i);
-            if(stockExchange.getName().equalsIgnoreCase(name)) {
-                System.out.println(stockExchange.getName() + " was found at index: " + i);
+            if(stockExchange.getName().equals(name)) {
+                System.out.println("findExchange(): " + stockExchange.getName() + " was found at index: " + i);
                 return i;
             }
         }
@@ -163,20 +170,18 @@ public class Main {
     }
 
     public static void printAllStocks() {
-//        is searching for exchange and returning index
-//        supposed to print all stocks in the exchange
-//        need to debug this process
         System.out.println("Enter Exchange: ");
         String name = scanner.nextLine();
 
         StockExchange exchange = queryExchange(name);
 
-        if(exchange != null) {
+        if (exchange != null) {
+            System.out.print(exchange.getName()+ " Stock List: ");
             exchange.printStockList();
         } else System.out.println("Incorrect exchange.");
     }
 
-    public static Stock findStock() {
+    public static void findStock() {
         System.out.println("Enter Exchange where stock is located: ");
         String exchangeName = scanner.nextLine();
         StockExchange exchange = queryExchange(exchangeName);
@@ -184,14 +189,15 @@ public class Main {
         System.out.println("Enter Stock ticker: ");
         String stockTicker = scanner.nextLine();
 
+        if(exchange == null) {
+            System.out.println(exchangeName + " was not found.");
+        }
+
         Stock stock = findStock(stockTicker, exchange);
 
         if(!(stock == null)) {
             System.out.println(stock.getTicker() + " was found.");
-            return stock;
         }
-
-        return null;
     }
 
     public static Stock findStock(String stockTicker, StockExchange exchange) {
@@ -224,8 +230,10 @@ public class Main {
         );
     }
 
-    public static void createStock() {
+    public static Stock createStock() {
         System.out.println("Creating new stock.");
+        System.out.println("Enter exchange: ");
+        String exchange = scanner.nextLine();
         System.out.println("Enter company name: ");
         String companyName = scanner.nextLine();
         System.out.println("Enter ticker, 3 or 4 letters: ");
@@ -235,21 +243,25 @@ public class Main {
         System.out.println("Enter amount of shares, whole number: ");
         int amount = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Enter exchange: ");
-        String exchange = scanner.nextLine();
         System.out.println("Enter trading status: ");
         String status = scanner.nextLine();
 
         Stock stock = stockFactory.getStock("new");
+
         if(stock.getCompanyName() == companyName) {
             System.out.println(companyName + " already exists.");
-        } else if (stock.getCompanyName() == null) {
-            stock.setStock(companyName, ticker, price, amount, exchange, status);
-            System.out.println(companyName + " (" + ticker + ")" + " has initiated a public offering of " + amount
-                    + " shares, for $" + amount + " dollars per shares.");
+
+        }
+        if(stock.getCompanyName() == null) {
+            System.out.println(companyName + " does not exist.");
         }
 
-        printStockMenu();
+        stock.setStock(companyName, ticker, price, amount, exchange, status);
+        StockExchange stockExchange = queryExchange(exchange);
+        stockExchange.addStock(stock);
+        System.out.println(exchange + ": " + companyName + " (" + ticker + ")" + " has initiated a public offering of " + amount
+                + " shares, for $" + price + " dollars per shares.");
+        return stock;
     }
 
     public static void removeStock() {

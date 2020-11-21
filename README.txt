@@ -13,11 +13,17 @@
     Not sure which is better technically.
     Currently those boolean returns would go to waste, so I removed them - for now.
 
+## Need To Do
+
+### User accounts, authentication, privileges, tokenization
+- could begin as simply as, once user accesses the personMenu they login and once they goBack, they 'logout'
+- many options for implementation, different levels of sophistication
+
 ### Will implement sorting methods
 - sort by sharePrice
 - sort by creationDate
 
-### Need to add a list of watchlists and methods to create/remove them
+### Need to add a list of watch lists and methods to create/remove them
 
 ### Need to check printStockList() - was thrown together
 - Along with the way the ownedStock and ownedStockList map/arraylist interact with related methods

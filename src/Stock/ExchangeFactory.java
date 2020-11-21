@@ -6,7 +6,7 @@ public class ExchangeFactory {
         if(stockExchange == null) {
             return null;
         } else if(stockExchange == "new") {
-            System.out.println("***Stock Exchange Factory***");
+            System.out.println("New stock exchange initiated.");
             return StockExchange.getStockExchange();
         }
         return null;

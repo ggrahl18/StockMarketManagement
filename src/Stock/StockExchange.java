@@ -19,6 +19,7 @@ public class StockExchange {
         ArrayList<Stock> stockList = new ArrayList();
         this.stockList = stockList;
         this.name = name;
+        System.out.println(this.name + " has been created.");
         return exchange;
     }
 
@@ -46,6 +47,7 @@ public class StockExchange {
 
     public void printStockList() {
         for(Stock stock : stockList) {
+            System.out.println("StockExchange.printStockList() initiated");
             System.out.print(stock.getTicker() + ", ");
         }
     }

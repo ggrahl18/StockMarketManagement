@@ -25,7 +25,7 @@ public class Stock {
         this.sharePrice = sharePrice;
         this.outstandingShares = outstandingShares;
         this.exchange = exchange;
-        this.tradingStatus = tradingStatus;
+         this.tradingStatus = tradingStatus;
     }
 
     public String getCompanyName() {
